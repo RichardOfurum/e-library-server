@@ -73,7 +73,7 @@ export class BookService {
   }
 
   async update(id: string, updateBookDto: UpdateBookDto) {
-    const existingBook = await this.bookModel.findByIdAndUpdate(id, updateBookDto, { new: true });
+    const existingBook = await this.bookModel.findByIdAndUpdate(id, updateBookDto,{ new: true }).exec();
 
     if (!existingBook) {
       throw new NotFoundException('Profile not found');

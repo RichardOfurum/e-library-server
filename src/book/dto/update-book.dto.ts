@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateBookDto } from './create-book.dto';
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateBookDto extends PartialType(CreateBookDto) {
     @IsString()
@@ -32,5 +32,6 @@ export class UpdateBookDto extends PartialType(CreateBookDto) {
     readonly url: string;
 
     @IsString()
-    readonly category: string;
+    @IsArray()
+    readonly categories: string[];
 }

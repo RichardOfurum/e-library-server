@@ -16,6 +16,6 @@ export class Book {
 
     readonly url: string;
 
-    readonly category: string;
+    readonly categories: string[];
 
 }

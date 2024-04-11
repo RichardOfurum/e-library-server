@@ -33,8 +33,11 @@ export class Book {
     @Prop({ required: true })
     url: string;
 
-    @Prop({ required: true })
-    category: string;
+    // @Prop({ required: true })
+    // category: string;
+
+    @Prop([String]) // Define an array of strings
+    categories: string[]; // This will store an array of book IDs or names, for example
 
     @Prop()
     createdAt: Date;
