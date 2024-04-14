@@ -25,14 +25,11 @@ export class BookService {
 
   }
 
-  async findAll(page: number, limit: number = 10) {
+  async findAll(page: number = 1, limit: number = 1) {
     const skip = (page - 1) * limit;
 
     const bookData = await this.bookModel.find().skip(skip).limit(limit).exec();
 
-    if (!bookData || bookData.length == 0) {
-      throw new NotFoundException('No record found');
-    }
     return bookData;
   }
 
@@ -46,6 +43,24 @@ export class BookService {
     }
     return bookData;
   }
+
+  async searchCategory(searchTerm: string, pageNumber: number, limit: number): Promise<Book[]> {
+    const skip = (pageNumber - 1) * limit;
+
+    return this.bookModel
+      .find({ categories: { $regex: searchTerm, $options: 'i' } })
+      .skip(skip)
+      .limit(limit)
+      .exec();
+  }
+
+  
+
+  // async searchCategory(searchTerm: string): Promise<Book[]> {
+  //   return this.bookModel
+  //     .find({ categories: { $regex: searchTerm, $options: 'i' } })
+  //     .exec();
+  // }
 
   async searchBooks(query: string): Promise<Book[]> {
     const regex = new RegExp(query, 'i'); // Case-insensitive search

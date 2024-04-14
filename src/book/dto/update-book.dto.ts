@@ -18,7 +18,7 @@ export class UpdateBookDto extends PartialType(CreateBookDto) {
     readonly publisher: string;
 
     @IsOptional()
-    readonly publishDate: Date;
+    readonly publishedDate: Date;
 
     @IsNumber()
     readonly pages: number;
@@ -31,7 +31,6 @@ export class UpdateBookDto extends PartialType(CreateBookDto) {
     @IsOptional()
     readonly url: string;
 
-    @IsString()
     @IsArray()
     readonly categories: string[];
 }

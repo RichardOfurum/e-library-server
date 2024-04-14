@@ -19,7 +19,7 @@ export class CreateBookDto {
     readonly publisher: string;
 
     @IsOptional()
-    readonly publishDate: Date;
+    readonly publishedDate: Date;
 
     @IsNumber()
     readonly pages: number;
@@ -29,10 +29,8 @@ export class CreateBookDto {
     readonly image: string;
 
     @IsString()
-    @IsOptional()
     readonly url: string;
 
-    @IsString()
     @IsArray()
     readonly categories: string[];
 }

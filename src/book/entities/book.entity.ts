@@ -8,7 +8,7 @@ export class Book {
 
     readonly publisher: string;
 
-    readonly publishDate: Date;
+    readonly publishedDate: Date;
 
     readonly pages: number;
 

@@ -22,12 +22,13 @@ export class Book {
     publisher: string;
 
     @Prop()
-    publishDate: Date;
+    publishedDate: Date;
 
     @Prop({ required: true })
     pages: number;
 
-    @Prop({ required: true })
+    // @Prop({ required: true })
+    @Prop()
     image: string;
 
     @Prop({ required: true })
