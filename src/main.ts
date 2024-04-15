@@ -55,10 +55,15 @@ async function bootstrap() {
 
   // Enable CORS
   app.enableCors({
-    origin: ['https://e-library-client.vercel.app'], // Replace with your frontend's origin(s)
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // Enable CORS credentials (if needed)
-  });
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+});
+  // app.enableCors({
+  //   origin: ['https://e-library-client.vercel.app'], // Replace with your frontend's origin(s)
+  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  //   credentials: true, // Enable CORS credentials (if needed)
+  // });
 
   // Start the application
   await app.listen(process.env.PORT || 3000, '0.0.0.0');
