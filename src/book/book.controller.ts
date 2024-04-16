@@ -32,7 +32,7 @@ export class BookController {
     return this.bookService.searchCategory(searchTerm, page, limit);
   }
 
-  @Get('search')
+  @Get('/search')
   async searchBooks(
     @Query('query') query: string,
     @Query('page') page: number,

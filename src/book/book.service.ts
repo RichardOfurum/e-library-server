@@ -62,7 +62,8 @@ export class BookService {
   //     .exec();
   // }
 
-  async searchBooks(query: string, page: number, limit: number): Promise<{ books: Book[], totalPages: number }> {
+  async searchBooks(query: string, page: number, limit: number){
+  // async searchBooks(query: string, page: number, limit: number): Promise<{ books: Book[], totalPages: number }> {
     const regex = new RegExp(query, 'i'); // Case-insensitive search
   
     const count = await this.bookModel.countDocuments({
@@ -90,7 +91,7 @@ export class BookService {
     .limit(limit)
     .exec();
   
-    return { books, totalPages };
+    return books;
   }
 
   // async searchBooks(query: string): Promise<Book[]> {
