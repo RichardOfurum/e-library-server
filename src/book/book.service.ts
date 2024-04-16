@@ -62,9 +62,21 @@ export class BookService {
   //     .exec();
   // }
 
-  async searchBooks(query: string): Promise<Book[]> {
+  async searchBooks(query: string, page: number, limit: number): Promise<{ books: Book[], totalPages: number }> {
     const regex = new RegExp(query, 'i'); // Case-insensitive search
-
+  
+    const count = await this.bookModel.countDocuments({
+      $or: [
+        { title: { $regex: regex } },
+        { author: { $regex: regex } },
+        { description: { $regex: regex } },
+        { publisher: { $regex: regex } },
+        { category: { $regex: regex } },
+      ],
+    });
+  
+    const totalPages = Math.ceil(count / limit);
+  
     const books = await this.bookModel.find({
       $or: [
         { title: { $regex: regex } },
@@ -73,10 +85,29 @@ export class BookService {
         { publisher: { $regex: regex } },
         { category: { $regex: regex } },
       ],
-    }).exec();
-
-    return books;
+    })
+    .skip((page - 1) * limit)
+    .limit(limit)
+    .exec();
+  
+    return { books, totalPages };
   }
+
+  // async searchBooks(query: string): Promise<Book[]> {
+  //   const regex = new RegExp(query, 'i'); // Case-insensitive search
+
+  //   const books = await this.bookModel.find({
+  //     $or: [
+  //       { title: { $regex: regex } },
+  //       { author: { $regex: regex } },
+  //       { description: { $regex: regex } },
+  //       { publisher: { $regex: regex } },
+  //       { category: { $regex: regex } },
+  //     ],
+  //   }).exec();
+
+  //   return books;
+  // }
 
   async findOne(id: string) {
     const existingBook = await this.bookModel.findById(id).exec();

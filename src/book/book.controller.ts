@@ -26,15 +26,19 @@ export class BookController {
   @Get('/search/category')
   async searchCategory(
     @Query('category') searchTerm: string,
-    @Query('pageNumber') page: number,
+    @Query('page') page: number,
     @Query('limit') limit: number,
   ) {
     return this.bookService.searchCategory(searchTerm, page, limit);
   }
 
   @Get('search')
-  async searchBooks(@Query('query') query: string) {
-    return this.bookService.searchBooks(query);
+  async searchBooks(
+    @Query('query') query: string,
+    @Query('page') page: number,
+    @Query('limit') limit: number
+  ) {
+    return this.bookService.searchBooks(query, page, limit);
   }
 
   @Get(':id')

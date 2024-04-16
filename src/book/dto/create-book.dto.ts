@@ -29,6 +29,7 @@ export class CreateBookDto {
     readonly image: string;
 
     @IsString()
+    @IsNotEmpty()
     readonly url: string;
 
     @IsArray()
