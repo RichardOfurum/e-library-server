@@ -18,17 +18,17 @@ export class Book {
     @Prop({ required: true })
     description: string;
 
-    @Prop()
+    @Prop({ required: false })
     publisher: string;
 
-    @Prop()
-    publishedDate: Date;
+    @Prop({ required: false })
+    publishedDate: string;
 
-    @Prop({ required: true })
+    @Prop({ required: false })
     pages: number;
 
     // @Prop({ required: true })
-    @Prop()
+    @Prop({ required: false })
     image: string;
 
     @Prop({ required: true })

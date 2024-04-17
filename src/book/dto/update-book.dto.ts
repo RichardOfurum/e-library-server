@@ -18,7 +18,7 @@ export class UpdateBookDto extends PartialType(CreateBookDto) {
     readonly publisher: string;
 
     @IsOptional()
-    readonly publishedDate: Date;
+    readonly publishedDate: string;
 
     @IsNumber()
     readonly pages: number;
