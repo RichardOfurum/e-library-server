@@ -47,7 +47,7 @@ export class UserService {
     const userData = await this.userModel.find().skip(skip).limit(limit).exec();
 
     if (!userData || userData.length == 0) {
-      throw new NotFoundException('No record found')
+      return [];
     }
     // return this.sanitizeUser(userData) ;
     return userData.map((user) => this.sanitizeUser(user));
