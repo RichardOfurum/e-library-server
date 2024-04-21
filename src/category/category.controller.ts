@@ -9,6 +9,11 @@ import { AuthorizeAdmin } from 'src/guards/authenticatAdmin.guard';
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) { }
 
+  @Get('/total')
+  getTotalCategories(){
+    return this.categoryService.getTotalCategories();
+  }
+
   @UseGuards(AuthenticationGuard,AuthorizeAdmin)
   @Post()
   create(@Body() createCategoryDto: CreateCategoryDto) {

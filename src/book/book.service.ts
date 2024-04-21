@@ -9,6 +9,15 @@ import { Model } from 'mongoose';
 export class BookService {
   constructor(@InjectModel('Book') private bookModel: Model<Book>) { }
 
+  async getTotalBooks(): Promise<number> {
+    try {
+      const totalBook = await this.bookModel.countDocuments().exec();
+      return totalBook;
+    } catch (error) {
+      throw new Error('Failed to fetch total number of categories');
+    }
+  }
+
   async create(createBookDto: CreateBookDto) {
 
     const createBook = new this.bookModel(createBookDto);

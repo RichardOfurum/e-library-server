@@ -10,6 +10,15 @@ import { Category } from './entities/category.entity';
 export class CategoryService {
   constructor(@InjectModel('Category') private categoryModel: Model<Category>) { }
 
+  async getTotalCategories(): Promise<number> {
+    try {
+      const totalCategories = await this.categoryModel.countDocuments().exec();
+      return totalCategories;
+    } catch (error) {
+      throw new Error('Failed to fetch total number of categories');
+    }
+  }
+
   async create(createCategoryDto: CreateCategoryDto) {
 
     const { name } = createCategoryDto;

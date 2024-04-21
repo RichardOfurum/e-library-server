@@ -9,6 +9,11 @@ import { AuthorizeAdmin } from 'src/guards/authenticatAdmin.guard';
 export class BookController {
   constructor(private readonly bookService: BookService) { }
 
+  @Get('/total')
+  getTotalBooks(){
+    return this.bookService.getTotalBooks();
+  }
+
   @UseGuards(AuthenticationGuard,AuthorizeAdmin)
   @Post()
   create(@Body() createBookDto: CreateBookDto) {

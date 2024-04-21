@@ -13,6 +13,15 @@ export class UserService {
 
   }
 
+  async getTotalUsers(): Promise<number> {
+    try {
+      const totalUsers = await this.userModel.countDocuments().exec();
+      return totalUsers;
+    } catch (error) {
+      throw new Error('Failed to fetch total number of categories');
+    }
+  }
+
   async findByLogin(loginDto: LoginDto) {
     const { username, password } = loginDto;
     const user = await this.userModel.findOne({ username });
